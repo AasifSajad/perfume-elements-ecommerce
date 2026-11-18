@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfume Elements E-Commerce</title>
+  <meta name="description" content="Premium perfume elements marketplace - essential oils, fragrances & raw materials">
+  <meta name="keywords" content="perfume, essential oils, fragrances, raw materials, e-commerce, shopping">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Perfume-inspired color palette */
+      --primary: #8B4513;
+      --secondary: #D4AF37;
+      --accent: #FFB6C1;
+      --success: #228B22;
+      --warning: #FF8C00;
+      --danger: #CD5C5C;
+      --dark: #2C1810;
+      --light: #F5E6D3;
+      --bg: #FFF8F0;
+      --card: #FFFFFF;
+      --text: #2C1810;
+      --text-muted: #5D4E37;
+      --border: #D4AF37;
+      --shadow: 0 4px 20px rgba(44, 24, 16, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 62.5%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.6rem;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    h1 { font-size: 4.8rem; margin-bottom: 1.6rem; }
+    h2 { font-size: 4rem; margin-bottom: 1.2rem; }
+    h3 { font-size: 3.2rem; margin-bottom: 1rem; }
+    h4 { font-size: 2.4rem; margin-bottom: 0.8rem; }
+    h5 { font-size: 2rem; margin-bottom: 0.6rem; }
+    h6 { font-size: 1.8rem; margin-bottom: 0.4rem; }
+
+    p { margin-bottom: 1.6rem; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    ul { list-style: none; }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.6rem;
+    }
+
+    .section-padding {
+      padding: 6.4rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1.2rem 2.4rem;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--card);
+    }
+
+    .btn-primary:hover {
+      background: #6b310e;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+
+    .btn-secondary:hover {
+      background: #b8982c;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    .btn-accent:hover {
+      background: #fab5c7;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: var(--card);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4.8rem;
+    }
+
+    .section-title h2 {
+      position: relative;
+      padding-bottom: 1.2rem;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6rem;
+      height: 0.2rem;
+      background: var(--secondary);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.6rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .logo span {
+      color: var(--secondary);
+    }
+
+    .nav-links a {
+      margin-left: 3.2rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:last-child {
+      margin-left: 0;
+    }
+
+    .btn-login {
+      padding: 0.8rem 1.8rem;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background: var(--primary);
+      color: var(--card);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(44, 24, 16, 0.8), rgba(44, 24, 16, 0.8)), url('images/hero-bg.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 1.6rem;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      color: var(--card);
+      margin-bottom: 1.6rem;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.8rem;
+      margin-bottom: 2.4rem;
+    }
+
+    .hero .btn-primary {
+      margin-right: 1.2rem;
+    }
+
+    /* Products Section */
+    .products-section {
+      background: var(--bg);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.4rem;
+      margin-top: 4.8rem;
+    }
+
+    .product-card {
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      height: 250px;
+      background: var(--light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    .product-info {
+      padding: 1.6rem;
+    }
+
+    .product-category {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      background: var(--light);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-price {
+      font-size: 1.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .product-rating {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Cart Section */
+    .cart-section {
+      background: var(--card);
+      padding: 4.8rem 0;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      padding: 4.8rem 0 1.6rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3.2rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .footer-brand h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .footer-links h4 {
+      font-size: 1.4rem;
+      margin-bottom: 1.6rem;
+      color: var(--accent);
+    }
+
+    .footer-links ul li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+
+    .footer-bottom {
+      padding-top: 2.4rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+    }
+
+    .footer-bottom p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    .social-links a {
+      margin-left: 1rem;
+      font-size: 1.6rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .modal-content {
+      background: var(--card);
+      padding: 2.4rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 { font-size: 3.2rem; }
+      .hero p { font-size: 1.4rem; }
+
+      .section-title h2 { font-size: 2.8rem; }
+
+      .product-grid { grid-template-columns: 1fr; }
+
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">Perfume <span>Elements</span></a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#products">Products</a></li>
+          <li><a href="#cart">Cart</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#" class="btn-login">Login / Register</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Discover the Art of Fragrance</h1>
+        <p>Premium perfume elements, essential oils, and fragrance ingredients for creators and enthusiasts.</p>
+        <div>
+          <a href="#products" class="btn btn-primary">Shop Now</a>
+          <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="products-section section-padding">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Perfume Elements</h2>
+      </div>
+      <div class="product-grid" id="product-grid">
+        <!-- Products will be rendered here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <section class="cart-section" id="cart-section" style="display: none;">
+    <div class="container">
+      <h2 class="section-title">
+        <h2>Your Cart</h2>
+      </h2>
+      <div id="cart-items" style="margin-top: 2.4rem;">
+        <!-- Cart items will be rendered here -->
+      </div>
+      <div style="margin-top: 2.4rem; padding-top: 2.4rem; border-top: 1px solid #e0e0e0;">
+        <h3>Total: $0.00</h3>
+        <a href="#" class="btn btn-primary" id="checkout-btn">Proceed to Checkout</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>Perfume Elements</h3>
+          <p>Premium perfume elements and fragrance ingredients for creators and enthusiasts.</p>
+        </div>
+
+        <div>
+          <h4>Products</h4>
+          <ul>
+            <li><a href="#">Essential Oils</a></li>
+            <li><a fragrance raw materials"</a></li>
+            <li><a href="#">Finished Fragrances</a></li>
+            <li><a href="#">Absolute Oils</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Perfume Elements. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#">🐦</a>
+          <a href="#">📷</a>
+          <a href="#">📘</a>
+          <a href="#">📸</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="modal" role="dialog">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Your Cart</h2>
+      <div id="modal-cart-items">
+        <!-- Cart items for modal -->
+      </div>
+      <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+        <h3>Total: $0.00</h3>
+        <a href="#cart-section" class="btn btn-primary">View Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
